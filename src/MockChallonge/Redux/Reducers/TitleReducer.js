@@ -1,5 +1,5 @@
 const InitialState = {
-	temp: "FIGHT FIGHT FIGHT 2017",
+	temp: "BEST OF THE BEST 2017",
 	input: '',
 	finalTitle: ""
 }
@@ -8,7 +8,14 @@ const InitialState = {
 function TitleReducer(state=InitialState,action){
 	switch(action.type){
 		case 'UPDATE_TITLE':
-			return Object.assign({},state,{input: event.target.value},{temp: ""})
+			{
+				if (action.payload != ""){
+					return Object.assign({},state,{input: event.target.value},{temp: ""},{finalTitle: ""})
+				}
+				else{
+					return InitialState
+				}
+			}
 		case 'UPDATE_ELIMS':
 			const title = Object.assign({},state,{finalTitle: state.input},{input: ""})
 			return title

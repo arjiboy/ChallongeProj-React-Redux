@@ -34,6 +34,8 @@ body{
 .col-container{
 	display: table;
 	padding: 5px;
+	min-height: 502px;
+	min-width: 998px;
 }
 .col {
 	display: table-cell;
@@ -44,6 +46,9 @@ body{
 	border: solid 1px white;
 	background-color: rgba(52, 73, 94,0.7);
 	border-radius: 3px;
+}
+.container *{
+	visibility: visible;
 }
 .item {
 	border:solid 1px black;

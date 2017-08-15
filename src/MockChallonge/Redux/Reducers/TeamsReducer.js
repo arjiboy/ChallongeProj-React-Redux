@@ -2,7 +2,8 @@ const InitialState = {
 	inputList: [],
 	elimsList : ["arjiboy.ix","babiDy","Crazee-9","DynaMight","elg33","f0x1898","gundamWin!","hollyBee"],
 	semisList: ["arjiboy.ix","Crazee-9","elg33","gundamWin!"],
-	finalsList: ["arjiboy.ix","elg33"]
+	finalsList: ["arjiboy.ix","elg33"],
+	winner: ""
 }
 
 
@@ -27,6 +28,8 @@ function TeamsReducer (state= InitialState,action){
 		case 'RANDOMIZE_TEAMS':
 			let randomized = [];
 			const teams = [...state.elimsList]
+			const x1 = ["waiting","waiting","waiting","waiting"]
+			const x2 = ["waiting","waiting"]
 			while (randomized.length != 8){
 				var randNum = Math.floor(Math.random()*teams.length);
 				var choice = teams[randNum];
@@ -34,7 +37,8 @@ function TeamsReducer (state= InitialState,action){
 					randomized.push(choice);
 				}
 			}
-			return Object.assign({},state,{elimsList: randomized})
+
+			return Object.assign({},state,{elimsList: randomized},{semisList: x1},{finalsList: x2})
 
 		case 'UPDATE_ELIMS':
 			{
@@ -66,7 +70,11 @@ function TeamsReducer (state= InitialState,action){
 			const list3 = [...state.finalsList.slice(0,indx),action.payload.name,...state.finalsList.slice(indx+1)]
 			const updatedFinals = Object.assign({},state,{finalsList: list3})
 			return updatedFinals
-			
+
+		case 'UPDATE_WINNER':
+			/*document.querySelector('.container > *').style.visibility = 'hidden';*/
+			return Object.assign({},state,{winner: action.payload})
+
 		default:
 			return state;
 	}

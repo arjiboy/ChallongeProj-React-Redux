@@ -40,6 +40,7 @@ class Container extends Component{
 			<div>
 				<h1>Tournament Bracket Generator</h1>
 				<div className='container'>
+					<div className='winner'></div>
 					<TourName />
 					<div className='col-container'>
 						<Dashboard />

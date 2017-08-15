@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Provider,connect} from 'react-redux'
+import {updateWinner} from './action'
 
 class FinalsScore extends Component{
 	render() {
 	const arr = this.props.score
+	const self = this
 		return (
 			<div className='col'>
 				{
@@ -12,13 +14,15 @@ class FinalsScore extends Component{
 							return (
 									<div>
 										<div className='finals-none'>|</div>
-										<div className='score'>&#x021A3;</div>
+										<div className='score' data-name={element} id={i} 
+												onClick={self.props.handleClick}>&#x021A3;</div>
 									</div>
 								)
 						}
 						else {
 							return (
-									<div className='score'>&#x021A3;</div>
+									<div className='score' data-name={element} id={i} 
+												onClick={self.props.handleClick}>&#x021A3;</div>
 								)
 						}
 					})
@@ -33,6 +37,9 @@ function mapStateToProps(state){
 		score: state.teams.finalsList
 	}
 }
-const FinalsScoreCont = connect(mapStateToProps)(FinalsScore);
+const mapDispatchToProps = ({
+	handleClick: updateWinner
+})
+const FinalsScoreCont = connect(mapStateToProps,mapDispatchToProps)(FinalsScore);
 
 export default FinalsScoreCont; 
